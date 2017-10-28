@@ -7,11 +7,15 @@
 </head>
 <body>
 	<p th:text="'Best devices and services!'" />
-	<div class="col-md-4 well" th:each = "product: ${products}">
-		<p th:text = "${product.name}"></p>
-		<img class="img-responsive" th:src = "${product.image}" />
-		<p th:text = "${product.description}"></p>
-		<p th:text = "${product.price}"></p>
+	<div class="col-md-4 text-center" th:each = "product: ${products}">
+		<div class="thumbnail">
+			<h4 th:text = "${product.name}"></h4>
+			<img class="img-responsive" th:src = "${product.image}" />
+			<br />
+			<p th:text = "'Color: ' + ${product.description}"></p>
+			<p th:text = "'Price: €' + ${product.price}"></p>
+			<button type="button" class="btn btn-primary" > Add to cart </button>
+		</div>
 	</div>
 </body>
 </html>
