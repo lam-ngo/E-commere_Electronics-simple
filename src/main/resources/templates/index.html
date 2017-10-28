@@ -3,8 +3,15 @@
 <head>
 	<title>Simple Electronics Store</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
 	<p th:text="'Best devices and services!'" />
+	<div class="col-md-4 well" th:each = "product: ${products}">
+		<p th:text = "${product.name}"></p>
+		<img class="img-responsive" th:src = "${product.image}" />
+		<p th:text = "${product.description}"></p>
+		<p th:text = "${product.price}"></p>
+	</div>
 </body>
 </html>
