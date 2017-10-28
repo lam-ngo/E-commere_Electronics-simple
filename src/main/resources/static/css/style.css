@@ -4,4 +4,13 @@
 	color:white;
 }
 
+.btn-carousel{
+	background-color:black;
+	color:white;
+}
+
+.btn-carousel:hover{
+	background-color:grey;
+	color:white;
+}
 		
