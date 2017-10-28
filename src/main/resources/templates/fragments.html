@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Fragments</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+</head>
+<body>
+	<!-- Header -->
+	<div th:fragment="header">
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="/">E-commerce Electronics Store</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="/">Products</a></li>
+		      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/">Customer Service <span class="caret"></span></a>
+		        <ul class="dropdown-menu">
+		          <li><a href="/">Payment</a></li>
+		          <li><a href="/">Delivery</a></li>
+		          <li><a href="/">Return-Exchange</a></li>
+		          <li><a href="/">Others</a></li>
+		        </ul>
+		      </li>
+		      <li><a href="/">About us</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <li><a href="/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		      <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		      <li><a href="/"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+		    </ul>
+		  </div>
+		</nav>
+	</div>
+	
+	<!-- Footer -->
+	<div th:fragment="footer" >
+		<div class="footer panel-footer text-center">
+			<h3>E-commerce Electronics Store</h3>
+			<p>Office: Abcxyz 123, 00100 Helsinki, Finland</p>
+			<p>Phone number: 040 123456</p>
+			<p>Contact hours: Mon-Fri 8:00-18:00</p>
+			<p>Enquiry: enquiry@ecommerce.electronics</p>
+			<p>Press: press@ecommerce.electronics</p>
+			<br />
+			<br />
+			<p>&copy; 2017 E-commerce Electronics Store</p>
+		</div>
+	</div>
+</body>
+</html>

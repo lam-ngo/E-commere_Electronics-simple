@@ -3,19 +3,41 @@
 <head>
 	<title>Simple Electronics Store</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" th:href="@{css/style.css}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
+<!-- Header -->
+<div th:replace="fragments :: header"></div>
+	
+	
+<!-- Main content -->
+<div class="wrapper">
+	<!-- Hero -->
 	<p th:text="'Best devices and services!'" />
-	<div class="col-md-4 text-center" th:each = "product: ${products}">
-		<div class="thumbnail">
-			<h4 th:text = "${product.name}"></h4>
-			<img class="img-responsive" th:src = "${product.image}" />
-			<br />
-			<p th:text = "'Color: ' + ${product.description}"></p>
-			<p th:text = "'Price: €' + ${product.price}"></p>
-			<button type="button" class="btn btn-primary" > Add to cart </button>
+	
+	<!-- Product list -->
+	<div class="container">
+		<div class="col-md-4 text-center" th:each = "product: ${products}">
+			<div class="thumbnail">
+				<h4 th:text = "${product.name}"></h4>
+				<img class="img-responsive" th:src = "${product.image}" />
+				<br />
+				<p th:text = "'Color: ' + ${product.description}"></p>
+				<p th:text = "'Price: €' + ${product.price}"></p>
+				<button type="button" class="btn btn-primary" > Add to cart </button>
+			</div>
 		</div>
 	</div>
+</div>
+
+
+<!-- Footer -->
+<div th:replace="fragments :: footer"></div>
+	
 </body>
 </html>
