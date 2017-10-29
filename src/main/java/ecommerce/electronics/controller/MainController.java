@@ -40,8 +40,6 @@ public class MainController {
 		
 		Product product = productRepository.findOne(productId);
 		
-		
-		
 		if(session.getAttribute("cart") == null) {
 			cart.add(product);
 			session.setAttribute("cart", cart);

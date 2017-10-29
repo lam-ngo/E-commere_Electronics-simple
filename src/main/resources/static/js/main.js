@@ -1,3 +1,7 @@
+$(document).ready(function(){
+	updateCartItemCount();
+});
+
 function addItemToCart(productId){
 	$.ajax ({
 		url: '/addToCart/' + productId,
