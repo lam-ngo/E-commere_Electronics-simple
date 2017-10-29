@@ -31,14 +31,18 @@ function addItemToCart(productId){
 }
 
 function updateCartItemCount(){
-	console.log("Done");
 	$.ajax ({ 
 		url: '/cart/total', 
 		type: "GET", 
 		dataType: "json",
 		contentType: "application/json",
 		complete: function(responseData, status, xhttp){ 
-			$('#cart-total').text('('+responseData.responseJSON+')');
+			var response = responseData.responseJSON;
+			
+			if(response.length > 0){
+				$('#cart-total').text('('+response.length+')');
+			}
+			
 		}
 	});
 	
