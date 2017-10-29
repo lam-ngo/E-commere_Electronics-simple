@@ -40,26 +40,39 @@ public class MainController {
 		
 		Product product = productRepository.findOne(productId);
 		
-		if(session.getAttribute("cart") == null) {
-			cart.add(product);
-			session.setAttribute("cart", cart);
-		}else {
-			cart = (List<Product>)session.getAttribute("cart");
-			cart.add(product);
-		}
+		cart = (List<Product>)session.getAttribute("cart");
+		cart.add(product);
 		
 		return cart;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/cart/total")
-	public @ResponseBody int shoppingCart (HttpServletRequest request, Model model) {
+	public @ResponseBody int cartTotal (HttpServletRequest request, Model model) {
+		List<Product> cart = new ArrayList<>();
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("cart") == null) {
+			session.setAttribute("cart", cart);
+		}else {
+			cart = (List<Product>)session.getAttribute("cart");
+		}
+		
+		return cart.size();
+	}
+	
+	@SuppressWarnings({ "unchecked", "unused" })
+	@RequestMapping(value="/cart")
+	public String shoppingCart (HttpServletRequest request, Model model) {
 		List<Product> cart = new ArrayList<>();
 		
 		HttpSession session = request.getSession();
 		
 		cart = (List<Product>) session.getAttribute("cart");
 		
-		return cart.size();
+		model.addAttribute("products",cart);
+		
+		return "cart";
 	}
 }
