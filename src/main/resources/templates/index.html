@@ -7,6 +7,7 @@
 	<link type="text/css" rel="stylesheet" href="css/style.css" th:href="@{css/style.css}" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="js/main.js" th:src="@{js/main.js}" ></script>
 </head>
 <body>
 
@@ -79,7 +80,7 @@
 				<br />
 				<p th:text = "'Color: ' + ${product.description}"></p>
 				<p th:text = "'Price: €' + ${product.price}"></p>
-				<button type="button" class="btn btn-primary" > Add to cart </button>
+				<button type="button" class="btn btn-primary" th:onclick="'javascript:addItemToCart(\'' + ${product.productId} + '\');'"> Add to cart </button>
 			</div>
 		</div>
 	</div>
