@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Shopping Cart</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" th:href="@{css/style.css}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="js/main.js" th:src="@{js/main.js}" ></script>
+</head>
+<body>
+
+
+<!-- Header -->
+<div th:replace="fragments :: header"></div>
+	
+	
+<!-- Main content -->
+<div class="wrapper">
+
+	<h3>Your shopping cart</h3>
+	
+	<!-- List all products user added to cart-->
+	<table th:each = "product: ${products}">
+		<thead>
+			<tr>
+				<th>Product ID</th>
+				<th>Name</th>
+				<th>Color</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th></th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td th:text = "${product.productId}"></td>
+				<td th:text = "${product.name}"></td>
+				<td th:text = "${product.description}"></td>
+				<td th:text = "'€' + ${product.price}"></td>
+				<td th:text = "'1'"></td>
+				<td> <button type="button" class="btn btn-danger" th:onclick="">Remove</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="container">
+		<div class="col-md-4 text-center" >
+			<div class="thumbnail">
+				<h4 th:text = "${product.name}"></h4>
+				<img class="img-responsive" th:src = "${product.image}" />
+				<br />
+				<p th:text = "'Color: ' + ${product.description}"></p>
+				<p th:text = "'Price: €' + ${product.price}"></p>
+				<button type="button" class="btn btn-primary" th:onclick="'javascript:addItemToCart(\'' + ${product.productId} + '\');'"> Add to cart </button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Footer -->
+<div th:replace="fragments :: footer"></div>
+	
+</body>
+</html>
