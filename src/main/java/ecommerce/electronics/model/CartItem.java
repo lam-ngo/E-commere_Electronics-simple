@@ -1,6 +1,6 @@
 package ecommerce.electronics.model;
 
-public class ShoppingCart {
+public class CartItem {
 	
 	private Long productId;
 	private String name;
@@ -8,7 +8,7 @@ public class ShoppingCart {
 	private int totalQuantity;
 	private Double totalPrice;
 	
-	public ShoppingCart(Long productId, String name, String color, int totalQuantity, Double totalPrice) {
+	public CartItem(Long productId, String name, String color, int totalQuantity, Double totalPrice) {
 		super();
 		this.productId = productId;
 		this.name = name;

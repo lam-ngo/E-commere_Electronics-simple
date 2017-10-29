@@ -17,46 +17,46 @@
 	
 	
 <!-- Main content -->
-<div class="wrapper">
+<div class="container">
 
 	<h3>Your shopping cart</h3>
 	
 	<!-- List all products user added to cart-->
-	<table th:each = "product: ${products}">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>Product ID</th>
 				<th>Name</th>
 				<th>Color</th>
-				<th>Price</th>
 				<th>Quantity</th>
+				<th>Price</th>
 				<th></th>
 			</tr>
 		</thead>
 		
+		<tbody th:each = "product: ${products}">
+			<tr>
+				<td th:text = "${cart.productId}"></td>
+				<td th:text = "${cart.name}"></td>
+				<td th:text = "${cart.color}"></td>
+				<td th:text = "${cart.totalQuantity}"></td>
+				<td th:text = "'€' + ${cart.totalPrice}"></td>
+				<td> <button type="button" class="btn btn-danger">Remove</button></td>
+			</tr>
+		</tbody>
 		<tbody>
 			<tr>
-				<td th:text = "${product.productId}"></td>
-				<td th:text = "${product.name}"></td>
-				<td th:text = "${product.description}"></td>
-				<td th:text = "'€' + ${product.price}"></td>
-				<td th:text = "'1'"></td>
-				<td> <button type="button" class="btn btn-danger" th:onclick="">Remove</button></td>
+				<td colspan="2"></td>
+				<td colspan="2"><h4 th:text = "'Total amount: €'"></h4></td>
+				<td colspan="2"></td>
+			</tr>
+			<tr>
+				<td colspan="2"></td>
+				<td colspan="2"><button type="button" class="btn btn-primary">Proceed to payment</button></td>
+				<td colspan="2"></td>
 			</tr>
 		</tbody>
 	</table>
-	<div class="container">
-		<div class="col-md-4 text-center" >
-			<div class="thumbnail">
-				<h4 th:text = "${product.name}"></h4>
-				<img class="img-responsive" th:src = "${product.image}" />
-				<br />
-				<p th:text = "'Color: ' + ${product.description}"></p>
-				<p th:text = "'Price: €' + ${product.price}"></p>
-				<button type="button" class="btn btn-primary" th:onclick="'javascript:addItemToCart(\'' + ${product.productId} + '\');'"> Add to cart </button>
-			</div>
-		</div>
-	</div>
 </div>
 
 

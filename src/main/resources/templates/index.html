@@ -78,7 +78,7 @@
 				<h4 th:text = "${product.name}"></h4>
 				<img class="img-responsive" th:src = "${product.image}" />
 				<br />
-				<p th:text = "'Color: ' + ${product.description}"></p>
+				<p th:text = "'Color: ' + ${product.color}"></p>
 				<p th:text = "'Price: €' + ${product.price}"></p>
 				<button type="button" class="btn btn-primary" th:onclick="'javascript:addItemToCart(\'' + ${product.productId} + '\');'"> Add to cart </button>
 			</div>

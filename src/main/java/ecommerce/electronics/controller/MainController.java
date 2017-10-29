@@ -1,7 +1,10 @@
 package ecommerce.electronics.controller;
 
+import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ecommerce.electronics.model.Product;
+import ecommerce.electronics.model.CartItem;
 import ecommerce.electronics.repository.ProductRepository;
+import ecommerce.electronics.service.ShoppingCartService;
 
 
 @Controller
@@ -32,47 +37,70 @@ public class MainController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/addToCart/{productId}")
-	public @ResponseBody List<Product> AddToCart (@PathVariable("productId") Long productId, HttpServletRequest request, Model model) {
+	public @ResponseBody Map<Long, Integer> AddToCart (@PathVariable("productId") Long productId, HttpServletRequest request, Model model) {
 		
-		List<Product> cart = new ArrayList<>();
+		//Create a hashmap to hold key: productId and value: totalQuantity of that product
+		Map<Long, Integer> cartTotal = new HashMap<Long, Integer>();
 		
 		HttpSession session = request.getSession();
 		
-		Product product = productRepository.findOne(productId);
+		cartTotal = (Map<Long, Integer>)session.getAttribute("cartTotal");
 		
-		cart = (List<Product>)session.getAttribute("cart");
-		cart.add(product);
+		Iterator iterator = cartTotal.entrySet().iterator();
+        while (iterator.hasNext()) {
+        	Map.Entry existedProduct = (Map.Entry) iterator.next();
+        	
+        	//check if cart already had that productId
+        	if(productId == existedProduct.getKey()) {
+        		cartTotal.put(productId, cartTotal.get(productId)+1);
+        	}else {
+        		cartTotal.put(productId, 1);
+        	}
+        } 
 		
-		return cart;
+		return cartTotal;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/cart/total")
-	public @ResponseBody int cartTotal (HttpServletRequest request, Model model) {
-		List<Product> cart = new ArrayList<>();
+	public @ResponseBody Map<Long, Integer> cartTotal (HttpServletRequest request, Model model) {
+		Map<Long, Integer> cartTotal = new HashMap<Long, Integer>();
 		
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("cart") == null) {
-			session.setAttribute("cart", cart);
+		if(session.getAttribute("cartTotal") == null) {
+			session.setAttribute("cartTotal", cartTotal);
 		}else {
-			cart = (List<Product>)session.getAttribute("cart");
+			cartTotal = (Map<Long, Integer>)session.getAttribute("cartTotal");
 		}
 		
-		return cart.size();
+		return cartTotal;
 	}
 	
 	@SuppressWarnings({ "unchecked", "unused" })
 	@RequestMapping(value="/cart")
 	public String shoppingCart (HttpServletRequest request, Model model) {
-		List<Product> cart = new ArrayList<>();
+		List<CartItem> cart = new ArrayList<>();
 		
 		HttpSession session = request.getSession();
 		
-		cart = (List<Product>) session.getAttribute("cart");
+		Map<Long, Integer> cartTotal = new HashMap<Long, Integer>();
+		cartTotal = (Map<Long, Integer>)session.getAttribute("cartTotal");
+		Iterator iterator = cartTotal.entrySet().iterator();
+        while (iterator.hasNext()) {
+        	Map.Entry existedProduct = (Map.Entry) iterator.next();
+        	
+        	Product product = productRepository.findOne((Long) existedProduct.getKey());
+        	
+        	int totalQuantity = (int)existedProduct.getValue();
+        	Double totalPrice = totalQuantity * product.getPrice();
+        	
+        	CartItem cartItem = new CartItem(product.getProductId(), product.getName(), product.getColor(), totalQuantity, totalPrice);
+        	
+        	cart.add(cartItem);
+        } 
 		
-		model.addAttribute("products",cart);
-		
+		model.addAttribute("cart",cart);
 		return "cart";
 	}
 }
