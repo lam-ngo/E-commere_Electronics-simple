@@ -21,7 +21,7 @@ public class ElectronicsApplication {
 	public CommandLineRunner demo(ProductRepository productRepository, UserRepository userRepository) {
 		return (args) -> {
 			
-			userRepository.save(new User("user", "password", "user@gmail.com", "0401234567", "Finland"));
+			userRepository.save(new User("user", "$2a$10$xTmLzWgMPyGO3TlNBYpOuu0dfDAlF5mXvQ5IJiF8utS/fEHKTgwna", "user@gmail.com", "0401234567", "Finland"));
 			
 			productRepository.save(new Product("Apple Iphone 8", "visual/iphonex.jpg", "Black", 1199.95));
 			productRepository.save(new Product("Samsung Galaxy S8", "visual/galaxys8.jpg", "Midnight Black", 699.95));
