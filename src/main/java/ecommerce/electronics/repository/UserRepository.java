@@ -7,4 +7,5 @@ import ecommerce.electronics.model.User;
 public interface UserRepository extends CrudRepository<User, Long> {
 	
 	User findByUserName(String userName);
+
 }

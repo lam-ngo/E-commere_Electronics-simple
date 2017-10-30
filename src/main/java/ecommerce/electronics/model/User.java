@@ -24,22 +24,17 @@ public class User {
 	@Column(name="email", nullable=false)
 	private String email;
 	
-	@Column(name="phoneNumber", nullable=false)
-	private String phoneNumber;
-	
-	@Column(name="country", nullable=false)
-	private String country;
+	@Column(name = "role", nullable = false)
+    private String role;
 
 	public User() {}
 	
-	public User(String userName, String hashPassword, String email, String phoneNumber,
-			String country) {
-		this.userId = userId;
+	public User(String userName, String hashPassword, String email, String role) {
+		
 		this.userName = userName;
 		this.hashPassword = hashPassword;
 		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.country = country;
+		this.role = role;
 	}
 
 	public Long getUserId() {
@@ -74,26 +69,13 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getRole() {
+		return role;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", hashPassword=" + hashPassword + ", email="
-				+ email + ", phoneNumber=" + phoneNumber + ", country=" + country
-				+ "]";
-	}
+	
 }

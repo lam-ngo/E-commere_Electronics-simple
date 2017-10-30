@@ -22,7 +22,7 @@
 		<h3>Signup</h3> <br />
 		
 		<!-- Signup form-->
-		<form th:object="${signupForm}" th:action="@{/}" action="#" method="post">
+		<form th:object="${signupForm}" th:action="@{/saveUser}" action="#" method="post">
 			
 			<div>
 				<label> Username <input type="text" th:field="*{userName}" class="form-control"/></label>
@@ -42,16 +42,6 @@
 			<div>
 				<label> Email <input type="email" th:field="*{email}" class="form-control"/></label>
 				<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Please provide a valid email</p>	
-			</div>
-			
-			<div>
-				<label> Phone number <input type="phoneNumber" th:field="*{phoneNumber}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Please provide a valid Finnish phone number (10 digits)</p>	
-			</div>
-			
-			<div>
-				<label> Country <input type="country" th:field="*{country}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('country')}" th:errors="*{country}">Please provide a valid country name</p>	
 			</div>
 			
 			<input type="submit" class="btn btn-primary" value="Signup"></input>		
