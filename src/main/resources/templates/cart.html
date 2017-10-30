@@ -17,44 +17,47 @@
 	
 	
 <!-- Main content -->
-<div class="container">
-
-	<h3>Your shopping cart</h3>
+<div class="wrapper">
 	
-	<!-- List all products user added to cart-->
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>Product ID</th>
-				<th>Name</th>
-				<th>Color</th>
-				<th>Price</th>
-				<th></th>
-			</tr>
-		</thead>
-		
-		<tbody th:each = "cartItem: ${cart}">
-			<tr>
-				<td th:text = "${cartItem.productId}"></td>
-				<td th:text = "${cartItem.name}"></td>
-				<td th:text = "${cartItem.color}"></td>
-				<td th:text = "'€' + ${cartItem.price}"></td>
-				<td> <button type="button" class="btn btn-danger">Remove</button></td>
-			</tr>
-		</tbody>
-		<tbody>
-			<tr>
-				<td colspan="2"></td>
-				<td colspan="2"><h4 th:text = "'Total price: €' + ${totalPrice}"></h4></td>
-				<td colspan="2"></td>
-			</tr>
-			<tr>
-				<td colspan="2"></td>
-				<td colspan="2"><button type="button" class="btn btn-primary">Proceed to payment</button></td>
-				<td colspan="2"></td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="container">
+		<h3 class="text-center">Your shopping cart</h3>
+	
+	
+		<!-- List all products user added to cart-->
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Product ID</th>
+					<th>Name</th>
+					<th>Color</th>
+					<th>Price</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody th:each = "cartItem: ${cart}">
+				<tr>
+					<td th:text = "${cartItem.productId}"></td>
+					<td th:text = "${cartItem.name}"></td>
+					<td th:text = "${cartItem.color}"></td>
+					<td th:text = "'€' + ${cartItem.price}"></td>
+					<td> <button type="button" class="btn btn-danger">Remove</button></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<td colspan="2"></td>
+					<td colspan="2"><h4 th:text = "'Total price: €' + ${totalPrice}"></h4></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+					<td colspan="2"><button type="button" class="btn btn-primary">Proceed to payment</button></td>
+					<td colspan="2"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 
 
