@@ -1,6 +1,7 @@
 package ecommerce.electronics.controller;
 
 import java.util.List;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ecommerce.electronics.model.Product;
-import ecommerce.electronics.model.CartItem;
 import ecommerce.electronics.repository.ProductRepository;
 
 
 @Controller
-public class MainController {
+public class ProductController {
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -80,8 +80,13 @@ public class MainController {
 			totalPrice += cart.get(i).getPrice();
 		}
 		
+		DecimalFormat df2 = new DecimalFormat(".##");
+		
+		String formattedTotalPrice = df2.format(totalPrice);
+		
 		model.addAttribute("cart",cart);
-		model.addAttribute("totalPrice",totalPrice);
+		model.addAttribute("totalPrice",formattedTotalPrice);
+		
 		return "cart";
 	}
 }

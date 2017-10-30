@@ -20,7 +20,7 @@ public class SignupForm {
     @NotEmpty
     private String role = "USER";
 
-	public String getUsername() {
+	public String getUserName() {
 		return userName;
 	}
 
