@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Signup</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" th:href="@{css/style.css}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="js/main.js" th:src="@{js/main.js}" ></script>
+</head>
+<body>
+
+
+<!-- Header -->
+<div th:replace="fragments :: header"></div>
+	
+	
+<!-- Main content -->
+<div class="wrapper">
+	<div class="container text-center" >
+		<h3>Signup</h3> <br />
+		
+		<!-- Signup form-->
+		<form th:object="${signupForm}" th:action="@{/}" action="#" method="post">
+			<div>
+				<label> Username <input type="text" th:field="*{userName}" class="form-control"/></label>
+				<p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Username Error</p>	
+			</div>
+			<div>
+				<label> Password <input type="password" th:field="*{password}" class="form-control"/></label>
+				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>	
+			</div>
+			<div>
+				<label> Re-type Password <input type="password" th:field="*{passwordCheck}" class="form-control"/></label>
+				<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>	
+			</div>
+			
+			<input type="submit" class="btn btn-primary" value="Signup"></input>		
+		</form>
+	</div>
+</div>
+
+
+<!-- Footer -->
+<div th:replace="fragments :: footer"></div>
+	
+</body>
+</html>
