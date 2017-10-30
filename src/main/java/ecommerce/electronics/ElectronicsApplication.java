@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import ecommerce.electronics.model.Product;
+import ecommerce.electronics.model.User;
 import ecommerce.electronics.repository.ProductRepository;
+import ecommerce.electronics.repository.UserRepository;
 
 @SpringBootApplication
 public class ElectronicsApplication {
@@ -16,8 +18,11 @@ public class ElectronicsApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(ProductRepository productRepository) {
+	public CommandLineRunner demo(ProductRepository productRepository, UserRepository userRepository) {
 		return (args) -> {
+			
+			userRepository.save(new User("user", "password", "user@gmail.com", "0401234567", "Finland"));
+			
 			productRepository.save(new Product("Apple Iphone 8", "visual/iphonex.jpg", "Black", 1199.95));
 			productRepository.save(new Product("Samsung Galaxy S8", "visual/galaxys8.jpg", "Midnight Black", 699.95));
 			productRepository.save(new Product("Apple Iphone 7 Plus", "visual/iphone7plus.jpg", "Rose Gold", 799.95));
