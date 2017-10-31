@@ -62,22 +62,17 @@ function checkUserLogin(){
 			if(response==false){
 				console.log("notLogin");
 				//change text 
-				$('#signup-or-account').text('Sign Up');
-				$('#login-or-logout').text('Login');
-				//change hyperlink
-				$('#signup-or-account').attr("href","/signup");
-				$('#login-or-logout').attr("href","/login");
-				
+				$('#signup-or-account').append('<a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a>');
+				$('#login-or-logout').append('<a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a>');
+	
 				//<span class="glyphicon glyphicon-user"></span>
 				//<span class="glyphicon glyphicon-log-in"></span>
 			}else{
 				console.log("isLogin");
 				//change text 
-				$('#signup-or-account').text('My account');
-				$('#login-or-logout').text('Logout');
-				//change hyperlink
-				$('#signup-or-account').attr("href","/account");
-				$('#login-or-logout').attr("href","/logout");
+				$('#signup-or-account').append('<a href="/account"><span class="glyphicon glyphicon-user"></span> My account</a>');
+				$('#login-or-logout').append('<a href="/logoutConfirm"><span class="glyphicon glyphicon-log-out"></span> Logout</a>');
+				
 			}
 			
 		}

@@ -21,13 +21,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests().antMatchers("/","/cart/total", "/isLogin", "/addToCart/{productId}","/signup","/saveUser","/js/*","/css/*","/visual/*").permitAll()
+			.authorizeRequests().antMatchers("/","/cart/total", "/isLogin","/loginSuccess", "/addToCart/{productId}","/signup","/saveUser","/js/*","/css/*","/visual/*").permitAll()
 			.and()
 			.authorizeRequests().anyRequest().authenticated()
 			.and()
 		.formLogin()
 			.loginPage("/login")
-	        .defaultSuccessUrl("/loginSuccess")
+	        .defaultSuccessUrl("/loginSuccess",true)
 	        .permitAll()
 	        .and()
 	    .logout()

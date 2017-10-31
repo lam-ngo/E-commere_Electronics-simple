@@ -88,4 +88,9 @@ public class UserController {
     	}
     	return "redirect:/login";    	
     }    
+	
+	@RequestMapping(value="/logoutConfirm")
+	public String LogoutConfirm () {
+		return "logoutConfirm";
+	}
 }

@@ -19,33 +19,17 @@
 <!-- Main content -->
 <div class="wrapper">
 	<div class="container text-center" >
-		<h3>Login</h3> <br />
+		<br />
+		<h4>After logout, your shopping cart info will be reset.<br />
+		Do you want to continue?</h4> <br />
 		
-		<!-- Login form-->
-		<div th:if="${param.error}">
-			Invalid username and password. <br />
-			<br />
-	    </div>
-	    <div th:if="${param.logout}">
-	        You have been logged out. <br />
-	        <br />
-	    </div>
-	    <form th:action="@{/login}" method="post">
-	        <div>
-	        	<label> User Name 
-	        		<input type="text" name="username" class="form-control"/>
-	        	</label>
-	        </div>
-	        <div>
-	        	<label> Password 
-	        		<input type="password" name="password" class="form-control"/> 
-	        	</label>
-	        </div>
-	        <div><input type="submit" value="Sign In" class="btn btn-primary"/> </div>
+	    <form th:action="@{/logout}" method="post">
+	        <input type="submit" value="Yes, log me out" class="btn btn-danger"/>
 	    </form>
 	    <br />
-	    or <a th:href="@{/signup}">Sign-up</a>
-	    <br />
+	    <a th:href="@{/}">
+	    	<input type="submit" value="No, take me back to main page" class="btn btn-primary"/>
+		</a>
 	</div>
 </div>
 
