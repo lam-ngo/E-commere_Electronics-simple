@@ -21,13 +21,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests().antMatchers("/cart").authenticated()
+			.authorizeRequests().antMatchers("/","/cart/total", "/isLogin", "/addToCart/{productId}","/signup","/saveUser","/js/*","/css/*","/visual/*").permitAll()
 			.and()
-			.authorizeRequests().anyRequest().permitAll()
+			.authorizeRequests().anyRequest().authenticated()
 			.and()
 		.formLogin()
 			.loginPage("/login")
-	        .defaultSuccessUrl("/")
+	        .defaultSuccessUrl("/loginSuccess")
 	        .permitAll()
 	        .and()
 	    .logout()
@@ -37,6 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     	auth.userDetailsService(userDetailService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+	}
 	
 }

@@ -1,5 +1,7 @@
 package ecommerce.electronics.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ecommerce.electronics.model.SignupForm;
 import ecommerce.electronics.model.User;
@@ -17,12 +20,35 @@ import ecommerce.electronics.repository.UserRepository;
 
 @Controller
 public class UserController {
-	@Autowired
+	@Autowired 
     private UserRepository userRepository; 
+
+	@RequestMapping(value="/isLogin")
+	public @ResponseBody String IsLogin (HttpSession session) {
+		String isLogin = "false";
+		
+		if(session.getAttribute("isLogin") == null) {
+			session.setAttribute("isLogin", isLogin);
+		}else {
+			isLogin = (String)session.getAttribute("isLogin");
+		}
+		
+		return isLogin;
+	}
 	
 	@RequestMapping(value="/login")
 	public String Login (Model model) {
 		return "login";
+	}
+	
+	@RequestMapping(value="/loginSuccess")
+	public String loginSuccess (HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("isLogin", "true");
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/signup")

@@ -4,7 +4,6 @@ import java.util.List;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ecommerce.electronics.model.Product;
@@ -33,14 +31,12 @@ public class ProductController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/addToCart/{productId}")
-	public @ResponseBody List<Product> AddToCart (@PathVariable("productId") Long productId, HttpServletRequest request) {
+	public @ResponseBody List<Product> AddToCart (@PathVariable("productId") Long productId, HttpSession session) {
 		//First, find the product added from repository
 		Product product = productRepository.findOne(productId);
 		
 		//Create a list to hold cartItem
 		List<Product> cart = new ArrayList<>();
-		
-		HttpSession session = request.getSession();
 		
 		cart = (List<Product>)session.getAttribute("cart");
 		
@@ -51,10 +47,8 @@ public class ProductController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/cart/total")
-	public @ResponseBody List<Product> cartTotal (HttpServletRequest request) {
+	public @ResponseBody List<Product> cartTotal (HttpSession session) {
 		List<Product> cart = new ArrayList<>();
-		
-		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("cart") == null) {
 			session.setAttribute("cart", cart);
@@ -65,12 +59,10 @@ public class ProductController {
 		return cart;
 	}
 	
-	@SuppressWarnings({ "unchecked", "null" })
+	@SuppressWarnings({ "unchecked" })
 	@RequestMapping(value="/cart")
-	public String shoppingCart (HttpServletRequest request, Model model) {
+	public String ShoppingCart (HttpSession session, Model model) {
 		List<Product> cart = new ArrayList<>();
-		
-		HttpSession session = request.getSession();
 		
 		cart = (List<Product>)session.getAttribute("cart");
 		

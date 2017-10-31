@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	updateCartItemCount();
+	checkUserLogin();
 });
 
 function addItemToCart(productId){
@@ -30,6 +31,7 @@ function addItemToCart(productId){
 	*/
 }
 
+
 function updateCartItemCount(){
 	$.ajax ({ 
 		url: '/cart/total', 
@@ -46,4 +48,38 @@ function updateCartItemCount(){
 		}
 	});
 	
+}
+
+function checkUserLogin(){
+	$.ajax ({ 
+		url: '/isLogin', 
+		type: "GET", 
+		dataType: "json",
+		contentType: "application/json",
+		complete: function(responseData, status, xhttp){ 
+			var response = responseData.responseJSON;
+			console.log(response);
+			if(response==false){
+				console.log("notLogin");
+				//change text 
+				$('#signup-or-account').text('Sign Up');
+				$('#login-or-logout').text('Login');
+				//change hyperlink
+				$('#signup-or-account').attr("href","/signup");
+				$('#login-or-logout').attr("href","/login");
+				
+				//<span class="glyphicon glyphicon-user"></span>
+				//<span class="glyphicon glyphicon-log-in"></span>
+			}else{
+				console.log("isLogin");
+				//change text 
+				$('#signup-or-account').text('My account');
+				$('#login-or-logout').text('Logout');
+				//change hyperlink
+				$('#signup-or-account').attr("href","/account");
+				$('#login-or-logout').attr("href","/logout");
+			}
+			
+		}
+	});
 }
