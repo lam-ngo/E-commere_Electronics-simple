@@ -57,7 +57,7 @@ function deleteItem(index){
 		dataType: "json",
 		contentType: "application/json",
 		complete: function(responseData, status, xhttp){ 
-			updateCartItemCount();
+			window.location.reload(true);
 		}
 	});
 }
