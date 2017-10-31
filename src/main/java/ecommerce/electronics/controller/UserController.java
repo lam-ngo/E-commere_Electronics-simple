@@ -1,6 +1,5 @@
 package ecommerce.electronics.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -26,6 +25,7 @@ public class UserController {
 
 	@RequestMapping(value="/isLogin")
 	public @ResponseBody String IsLogin (HttpSession session) {
+		
 		String isLogin = "false";
 		
 		if(session.getAttribute("isLogin") == null) {
@@ -43,12 +43,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/loginSuccess")
-	public String loginSuccess (HttpServletRequest request, Model model) {
-		
-		HttpSession session = request.getSession();
-		
-		session.setAttribute("isLogin", "true");
-		
+	public String loginSuccess () {
 		return "redirect:/";
 	}
 	
@@ -91,7 +86,7 @@ public class UserController {
     }    
 	
 	@RequestMapping(value="/userAccount")
-	public String UserAccount (Model model) {
+	public String UserAccount (HttpSession session, Model model) {
 		
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		
