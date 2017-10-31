@@ -71,8 +71,10 @@
 	</div>
 	
 	<!-- Product list -->
-	<div class="container" id="products">
-		<div class="col-md-4 text-center" th:each = "product: ${products}">
+	<div class="container text-center" id="products">
+		<br /><br />
+		<h3>Quality products with best price!</h3><br />
+		<div class="col-md-4" th:each = "product: ${products}">
 			<div class="thumbnail">
 				<h4 th:text = "${product.name}"></h4>
 				<img class="img-responsive" th:src = "${product.image}" />

@@ -43,7 +43,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/loginSuccess")
-	public String loginSuccess () {
+	public String loginSuccess (HttpSession session) {
+		session.setAttribute("isLogin", "true");
 		return "redirect:/";
 	}
 	
