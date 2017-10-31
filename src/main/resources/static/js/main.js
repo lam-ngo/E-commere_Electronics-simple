@@ -50,6 +50,18 @@ function updateCartItemCount(){
 	
 }
 
+function deleteItem(index){
+	$.ajax ({ 
+		url: '/deleteItem/index/' + index, 
+		type: "GET", 
+		dataType: "json",
+		contentType: "application/json",
+		complete: function(responseData, status, xhttp){ 
+			updateCartItemCount();
+		}
+	});
+}
+
 function checkUserLogin(){
 	$.ajax ({ 
 		url: '/isLogin', 

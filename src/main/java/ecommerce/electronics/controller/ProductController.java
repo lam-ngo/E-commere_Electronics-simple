@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ecommerce.electronics.model.Product;
@@ -82,25 +83,24 @@ public class ProductController {
 		return "cart";
 	}
 	
-	@RequestMapping(value="/deleteItem?index={index}")
-	public String DeleteItem (HttpSession session, Model model) {
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/deleteItem/index/{index}", method = RequestMethod.GET)
+	public @ResponseBody List<Product> DeleteItem (@PathVariable("index") int index, HttpSession session) {
+		
 		List<Product> cart = new ArrayList<>();
+		List<Product> updateCart = new ArrayList<>();
 		
 		cart = (List<Product>)session.getAttribute("cart");
+		cart.remove(index);
 		
-		Double totalPrice = 0.00;
-		
-		for(int i = 0; i<cart.size();i++) {
-			totalPrice += cart.get(i).getPrice();
+		for(int i = 0; i<cart.size(); i++) {
+			if(cart.get(i) != null) {
+				updateCart.add(cart.get(i));
+			}
 		}
 		
-		DecimalFormat df2 = new DecimalFormat(".##");
+		session.setAttribute("cart", updateCart);
 		
-		String formattedTotalPrice = df2.format(totalPrice);
-		
-		model.addAttribute("cart",cart);
-		model.addAttribute("totalPrice",formattedTotalPrice);
-		
-		return "cart";
+		return updateCart;
 	}
 }

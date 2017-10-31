@@ -36,13 +36,13 @@
 				</tr>
 			</thead>
 			
-			<tbody th:each = "cartItem: ${cart}">
+			<tbody th:each = "cartItem,iter: ${cart}">
 				<tr>
 					<td th:text = "${cartItem.productId}"></td>
 					<td th:text = "${cartItem.name}"></td>
 					<td th:text = "${cartItem.color}"></td>
 					<td th:text = "'€' + ${cartItem.price}"></td>
-					<td> <button type="button" class="btn btn-danger">Remove</button></td>
+					<td> <button type="button" class="btn btn-danger" th:onclick="'javascript:deleteItem(\'' + ${iter.index} + '\');'">Remove</button></td>
 				</tr>
 			</tbody>
 			<tbody>
