@@ -36,7 +36,7 @@
 	        <img src="visual/carousel-1.jpg" style="width:100%;" />
 	        <div class="carousel-caption">
 	          <h3>Galaxy S8</h3>
-	          <button type="button" class="btn btn-carousel" href="#"> Explore </button>
+	          <a href="#products"><button type="button" class="btn btn-carousel"> Explore </button></a>
 	        </div>
 	      </div>
 	
@@ -44,7 +44,7 @@
 	        <img src="visual/carousel-2.jpg" style="width:100%;" />
 	        <div class="carousel-caption">
 	          <h3>OnePlus 5</h3>
-	          <button type="button" class="btn btn-carousel" href="#"> Explore </button>
+	          <a href="#products"><button type="button" class="btn btn-carousel"> Explore </button></a>
 	        </div>
 	      </div>
 	    
@@ -52,7 +52,7 @@
 	        <img src="visual/carousel-3.jpg" style="width:100%;" />
 	        <div class="carousel-caption">
 	          <h3>Iphone X</h3>
-	          <button type="button" class="btn btn-carousel" href="#"> Explore </button>
+	          <a href="#products"><button type="button" class="btn btn-carousel"> Explore </button></a>
 	        </div>
 	      </div>
 	  
@@ -71,7 +71,7 @@
 	</div>
 	
 	<!-- Product list -->
-	<div class="container">
+	<div class="container" id="products">
 		<div class="col-md-4 text-center" th:each = "product: ${products}">
 			<div class="thumbnail">
 				<h4 th:text = "${product.name}"></h4>

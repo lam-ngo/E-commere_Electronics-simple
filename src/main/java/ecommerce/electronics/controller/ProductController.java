@@ -81,4 +81,26 @@ public class ProductController {
 		
 		return "cart";
 	}
+	
+	@RequestMapping(value="/deleteItem?index={index}")
+	public String DeleteItem (HttpSession session, Model model) {
+		List<Product> cart = new ArrayList<>();
+		
+		cart = (List<Product>)session.getAttribute("cart");
+		
+		Double totalPrice = 0.00;
+		
+		for(int i = 0; i<cart.size();i++) {
+			totalPrice += cart.get(i).getPrice();
+		}
+		
+		DecimalFormat df2 = new DecimalFormat(".##");
+		
+		String formattedTotalPrice = df2.format(totalPrice);
+		
+		model.addAttribute("cart",cart);
+		model.addAttribute("totalPrice",formattedTotalPrice);
+		
+		return "cart";
+	}
 }
