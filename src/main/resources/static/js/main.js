@@ -70,7 +70,7 @@ function checkUserLogin(){
 			}else{
 				console.log("isLogin");
 				//change text 
-				$('#signup-or-account').append('<a href="/account"><span class="glyphicon glyphicon-user"></span> My account</a>');
+				$('#signup-or-account').append('<a href="/userAccount"><span class="glyphicon glyphicon-user"></span> My account</a>');
 				$('#login-or-logout').append('<a href="/logoutConfirm"><span class="glyphicon glyphicon-log-out"></span> Logout</a>');
 				
 			}

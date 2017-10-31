@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,6 +89,18 @@ public class UserController {
     	}
     	return "redirect:/login";    	
     }    
+	
+	@RequestMapping(value="/userAccount")
+	public String UserAccount (Model model) {
+		
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		User currentUser = userRepository.findByUserName(currentUserName);
+		
+		model.addAttribute("user", currentUser);
+		
+		return "userAccount";
+	}
 	
 	@RequestMapping(value="/logoutConfirm")
 	public String LogoutConfirm () {
